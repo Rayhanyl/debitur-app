@@ -60,20 +60,23 @@
     </div>
   </div>
 <!--   Core JS Files   -->
-  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+  {{-- <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> --}}
+  {{-- <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script> --}}
+  {{-- <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script> --}}
+  <script src="{{ asset ('assets/js/jquery-3.6.1.js') }}"></script>
   <script src="{{ asset ('assets/js/core/popper.min.js') }}"></script>
   <script src="{{ asset ('assets/js/core/bootstrap.min.js') }}"></script>
   <script src="{{ asset ('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
   <script src="{{ asset ('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
   <script src="{{ asset ('assets/js/plugins/chartjs.min.js') }}"></script>
+  <script src="{{ asset ('assets/js/datatables.min.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+  @include('sweetalert::alert')
   @stack('scripts')
   <script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
-
     var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-
     gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
     gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
     gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
