@@ -9,6 +9,7 @@ use App\Exports\TemuansExport;
 use App\Imports\TemuansImport;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\Division;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -16,26 +17,56 @@ use RealRashid\SweetAlert\Facades\Alert;
 class OperatorController extends Controller
 {
 
-    public function showTemuan(){
+    // public function showTemuan(){
+    //     $user = Auth::user();
+    //     $divisionId = $user->division_id;
+    //     $userId = $user->id;
+    //     $division = Division::all();
+    //     $temuan = Temuan::with('user');
+    //         $temuan->whereIn('status', [2, 3])
+    //                ->whereHas('user', function ($query) use ($divisionId) {
+    //                    $query->where('role_id', 3);
+    //                });
+    //     $temuan = $temuan->get();
+    //     return view('operator.temuan',compact('temuan','division'));
+    // }
+
+    public function showTemuan(Request $request){
+        dd($request->all());
         $user = Auth::user();
         $divisionId = $user->division_id;
         $userId = $user->id;
+        $division = Division::all();
         $temuan = Temuan::with('user');
-        if ($divisionId === 1) {
-            $temuan->where('status', 3)
-                   ->whereHas('user', function ($query) use ($divisionId) {
-                       $query->where('role_id', 3);
-                   });
-
-        } else {
-            $temuan->whereIn('status', [1, 2])
-            ->whereHas('user', function ($query) use ($userId) {
-                $query->where('id', $userId);
+    
+        // Get the selected division from the request
+        $selectedDivisionId = $request->input('division', null);
+    
+        // Check if a specific division is selected
+        if ($selectedDivisionId !== null) {
+            // Filter by the selected division
+            $temuan->whereHas('user', function ($query) use ($selectedDivisionId) {
+                $query->where('division_id', $selectedDivisionId);
             });
         }
+    
+        // Continue with the existing logic for filtering by status and role
+        if ($divisionId === 1) {
+            $temuan->whereIn('status', [2, 3])
+                   ->whereHas('user', function ($query) {
+                       $query->where('role_id', 3);
+                   });
+        } else {
+            $temuan->whereIn('status', [1, 2])
+                   ->whereHas('user', function ($query) use ($userId) {
+                       $query->where('id', $userId);
+                   });
+        }
+    
         $temuan = $temuan->get();
-        return view('operator.temuan',compact('temuan'));
+        return view('operator.temuan', compact('temuan', 'division', 'selectedDivisionId'));
     }
+    
 
     public function showEdit($id){
         $temuan = Temuan::find($id);

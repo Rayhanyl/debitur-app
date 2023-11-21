@@ -14,11 +14,32 @@
                             <i class="fa fa-upload me-2" aria-hidden="true"></i> 
                             Import Excel
                           </a>
-                          {{-- <a href="{{ route ('export.operator.temuan') }}" class="btn bg-gradient-primary mx-2 rounded-5">
-                            <i class="fa fa-download me-2" aria-hidden="true"></i> 
-                            Download Excel
-                          </a> --}}
-
+                          @if (session('division') === 'KSAI')
+                            <a href="{{ route ('export.operator.temuan') }}" class="btn bg-gradient-primary mx-2 rounded-5">
+                                <i class="fa fa-download me-2" aria-hidden="true"></i> 
+                                Download Excel
+                            </a>
+                            <form action="{{ route ('show.operator.temuan.page') }}">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-12 col-lg-9">
+                                        <div class="form-group">
+                                            <label for="divisionSelect">Select Division</label>
+                                            <select class="form-control" name="selectedDivisionId" id="divisionSelect">
+                                                <option>All</option>
+                                                @foreach ($division as $item)
+                                                    <option class="text-uppercase" value="{{ $item->id }}" {{ $selectedDivisionId == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-3">
+                                        <label class="text-white" for="divisionSelect">Select Division</label>
+                                        <button type="submit" class="btn btn-success w-100">Fillter</button>
+                                    </div>
+                                </div>
+                            </form>
+                          @endif
                         </div>
                         <div class="col-12 my-3" style="width:100%">
                           <div class="table-responsive">
@@ -53,11 +74,14 @@
                                   <td>{{ $item->status }}</td>
                                   <td>
                                     <div class="d-grid gap-2 d-md-block">
-                                      @if (session('division') === 'KSAI')
-                                        <a href="{{ route('update.status.temuan', ['id' => $item->id]) }}" class="btn btn-success btn-approved-temuan" type="button">Approved</a>
-                                      @endif  
-                                      <a href="{{ route('show.edit.operator.temuan.page', ['id' => $item->id]) }}" class="btn btn-warning {{ $item->status == 2 ? 'disabled' : '' }}">Edit</a>
-                                      <a href="{{ route('delete.temuan', ['id' => $item->id]) }}" class="btn btn-danger btn-delete-temuan {{ $item->status == 2 ? 'disabled' : '' }}">Delete</a>
+                                        @if (session('division') === 'KSAI')
+                                            <a href="{{ route('update.status.temuan', ['id' => $item->id]) }}" class="btn btn-success btn-approved-temuan" type="button">Approved</a>
+                                            <a href="{{ route('show.edit.operator.temuan.page', ['id' => $item->id]) }}" class="btn btn-warning {{ $item->status == 3 ? 'disabled' : '' }}">Edit</a>
+                                            <a href="{{ route('delete.temuan', ['id' => $item->id]) }}" class="btn btn-danger btn-delete-temuan {{ $item->status == 3 ? 'disabled' : '' }}">Delete</a>
+                                        @else
+                                            <a href="{{ route('show.edit.operator.temuan.page', ['id' => $item->id]) }}" class="btn btn-warning {{ $item->status == 2 ? 'disabled' : '' }}">Edit</a>
+                                            <a href="{{ route('delete.temuan', ['id' => $item->id]) }}" class="btn btn-danger btn-delete-temuan {{ $item->status == 2 ? 'disabled' : '' }}">Delete</a>
+                                        @endif  
                                     </div>
                                   </td>
                                 </tr>
