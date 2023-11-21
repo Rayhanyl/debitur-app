@@ -54,6 +54,22 @@ class UserSeeder extends Seeder
                 'division_id' => 2
 
             ],
+            [
+                'name' => 'Lanesra',
+                'email' => 'lanesra@gmail.com',
+                'password' => Hash::make('qwerty'),
+                'role_id' => 2,
+                'division_id' => 3
+
+            ],
+            [
+                'name' => 'Anggi',
+                'email' => 'anggi@gmail.com',
+                'password' => Hash::make('qwerty'),
+                'role_id' => 3,
+                'division_id' => 3
+
+            ],
         ];
 
         foreach ($users as $user) {

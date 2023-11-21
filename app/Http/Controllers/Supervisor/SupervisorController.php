@@ -40,7 +40,6 @@ class SupervisorController extends Controller
         $user = Auth::user();
         $divisionId = $user->division_id;
         $roleId = $user->role_id;
-        // Initialize the $status variable
         $status = '';
     
         if ($divisionId === 1 && $roleId === 2) {

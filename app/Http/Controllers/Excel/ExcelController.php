@@ -25,13 +25,19 @@ class ExcelController extends Controller
         return Excel::download(new TemuansKsaiSupervisorExport($roleId), 'Temuans.xlsx');
     }
 
-    // Export By Division
-    public function exportFileExcel(){
+    /**
+     * Export Temuan data to Excel file.
+     *
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function exportFileExcel()
+    {
         $user = Auth::user();
         $divisionId = $user->division_id;
         $roleId = $user->role_id;
-        return Excel::download(new TemuansExport($divisionId, $roleId), 'temuans.xlsx');
+        return Excel::download(new TemuansExport($divisionId, $roleId), 'Temuan_By_division.xlsx');
     }
+
     
     // Import By Division
     public function importFileExcel(){

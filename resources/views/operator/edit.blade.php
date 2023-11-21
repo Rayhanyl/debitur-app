@@ -7,62 +7,65 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <h4>Otorisasi Temuan Operator</h4>
+                            <h4>Edit Otorisasi Temuan</h4>
                         </div>
-                        <div class="col-12 my-4">
-                          <a class="btn bg-gradient-success btn-import-excel-file mx-2 rounded-5">
-                            <i class="fa fa-upload me-2" aria-hidden="true"></i> 
-                            Import Excel
-                          </a>
-                          <a href="{{ route ('export.operator.temuan') }}" class="btn bg-gradient-primary mx-2 rounded-5">
-                            <i class="fa fa-download me-2" aria-hidden="true"></i> 
-                            Download Excel
-                          </a>
-
-                        </div>
-                        <div class="col-12 my-3" style="width:100%">
-                          <div class="table-responsive">
-                            <table class="table table-striped " id="table-temuan-operator">
-                              <thead class="table-orange">
-                                  <tr>
-                                      <th>No</th>
-                                      <th>Object Pemeriksaan</th>
-                                      <th>Jenis Audit</th>
-                                      <th>Auditor</th>
-                                      <th>Risk</th>
-                                      <th>Issue Summary</th>
-                                      <th>Issue Detail</th>
-                                      <th>Recomendation</th>
-                                      <th>Corective Action Plan</th>
-                                      <th>status</th>
-                                      <th>Action</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                @foreach ($temuan as $item)                                    
-                                <tr>
-                                  <td>{{ $loop->iteration }}</td>
-                                  <td>{{ $item->object_pemeriksaan }}</td>
-                                  <td>{{ $item->jenis_audit }}</td>
-                                  <td>{{ $item->auditor }}</td>
-                                  <td>{{ $item->risk }}</td>
-                                  <td>{{ $item->issue_summary }}</td>
-                                  <td>{{ $item->issue_detail }}</td>
-                                  <td>{{ $item->recomendation }}</td>
-                                  <td>{{ $item->corrective_action_plan }}</td>
-                                  <td>{{ $item->status }}</td>
-                                  <td>
-                                    <div class="d-grid gap-2 d-md-block">
-                                      <a class="btn btn-success" type="button">Approved</a>
-                                      <a class="btn btn-warning" type="button">Edit</a>
-                                      <a class="btn btn-danger" type="button">Delete</a>
-                                    </div>
-                                  </td>
-                                </tr>
-                                @endforeach
-                              </tbody>
-                          </table>
-                          </div>
+                        <div class="col-12 my-5">
+                          <form action="{{ route ('update.temuan.operator', ['id' => $temuan->id]) }}" method="POST">
+                           @csrf
+                            <div class="row">
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <label for="object_pemeriksaan" class="form-control-label">Object Pemeriksaan</label>
+                                  <input type="text" class="form-control" id="object_pemeriksaan" name="object_pemeriksaan" value="{{ $temuan->object_pemeriksaan }}" placeholder="Object Pemeriksaan">
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <label for="jenis_audit" class="form-control-label">Kredit Cabang</label>
+                                  <input type="text" class="form-control" id="jenis_audit" name="jenis_audit" value="{{ $temuan->jenis_audit }}" placeholder="Jenis Audit">
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <label for="auditor" class="form-control-label">Auditor</label>
+                                  <input type="text" class="form-control" id="auditor" name="auditor" value="{{ $temuan->auditor }}" placeholder="Auditor">
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <label for="risk" class="form-control-label">Risk</label>
+                                  <input type="text" class="form-control" id="risk" name="risk" value="{{ $temuan->risk }}" placeholder="Risk">
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <label for="issue_summary" class="form-control-label">Issue Summary</label>
+                                  <textarea class="form-control" name="issue_summary" id="issue_summary" cols="20" rows="5">{{ $temuan->issue_summary }}</textarea>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <label for="issue_detail" class="form-control-label">Risk</label>
+                                  <textarea class="form-control" name="issue_detail" id="issue_detail" cols="20" rows="5">{{ $temuan->issue_detail }}</textarea>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <label for="recomendation" class="form-control-label">Recommendation</label>
+                                  <textarea class="form-control" name="recomendation" id="recomendation" cols="20" rows="5">{{ $temuan->recomendation }}</textarea>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label for="corrective_action_plan" class="form-control-label">Corrective Action Plan</label>
+                                  <input type="text" class="form-control" id="corrective_action_plan" name="corrective_action_plan" value="{{ $temuan->corrective_action_plan }}" placeholder="Corrective Action Plan">
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary btn-lg w-100">Update Temuan</button>
+                              </div>
+                            </div>
+                          </form>
                         </div>
                     </div>
                 </div>
@@ -89,27 +92,6 @@
 </footer>
 </div>
 
-
-{{-- Modal --}}
-<div class="modal fade" id="importexcel-Modal" tabindex="-1" aria-labelledby="importExcelModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="importExcelModal">Import file excel</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body p-5">
-              <form action="{{ route ('import.operator.temuan') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="file" name="file" class="form-control">
-                <br>
-                <button class="btn bg-gradient-primary mx-2 rounded-5">Import Temuan</button>
-              </form>
-          </div>
-      </div>
-  </div>
-</div>
-{{-- Modal --}}
 
 @push('scripts')
   <script>

@@ -14,10 +14,10 @@
                             <i class="fa fa-upload me-2" aria-hidden="true"></i> 
                             Import Excel
                           </a>
-                          <a href="{{ route ('export.operator.temuan') }}" class="btn bg-gradient-primary mx-2 rounded-5">
+                          {{-- <a href="{{ route ('export.operator.temuan') }}" class="btn bg-gradient-primary mx-2 rounded-5">
                             <i class="fa fa-download me-2" aria-hidden="true"></i> 
                             Download Excel
-                          </a>
+                          </a> --}}
 
                         </div>
                         <div class="col-12 my-3" style="width:100%">
@@ -56,8 +56,8 @@
                                       @if (session('division') === 'KSAI')
                                         <a href="{{ route('update.status.temuan', ['id' => $item->id]) }}" class="btn btn-success btn-approved-temuan" type="button">Approved</a>
                                       @endif  
-                                      <a class="btn btn-warning" type="button">Edit</a>
-                                      <a class="btn btn-danger" type="button">Delete</a>
+                                      <a href="{{ route('show.edit.operator.temuan.page', ['id' => $item->id]) }}" class="btn btn-warning {{ $item->status == 2 ? 'disabled' : '' }}">Edit</a>
+                                      <a href="{{ route('delete.temuan', ['id' => $item->id]) }}" class="btn btn-danger btn-delete-temuan {{ $item->status == 2 ? 'disabled' : '' }}">Delete</a>
                                     </div>
                                   </td>
                                 </tr>
@@ -111,7 +111,6 @@
       </div>
   </div>
 </div>
-
 {{-- Modal --}}
 
 @push('scripts')
@@ -149,6 +148,40 @@
                 Swal.fire({
                     icon: 'warning',
                     title: 'The item is being updated',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: function (toast) {
+                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                    }
+                }).then(() => {
+                    window.location.href = href;
+                });
+            }
+        });
+    });
+
+    $(document).on('click', '.btn-delete-temuan', function (e) {
+        e.preventDefault();
+        let href = $(this).attr('href');
+        Swal.fire({
+            title: 'Delete Temuan',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            toast: true,
+            position: 'top-end',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Delete'
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'The item is being deleted',
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,

@@ -34,11 +34,14 @@ Route::middleware(['auth'])->group(function () {
 
     // Supervisor
     Route::get('/supervisor/temuan', [SupervisorController::class, 'showTemuan'])->name('show.supervisor.temuan.page');
-    Route::get('/update/status/{id}', [SupervisorController::class, 'updateStatusTemuan'])->name('update.status.temuan');
+    Route::get('/update/status/supervisor/{id}', [SupervisorController::class, 'updateStatusTemuan'])->name('update.status.temuan.supervisor');
     
     // Operator
     Route::get('/operator/temuan', [OperatorController::class, 'showTemuan'])->name('show.operator.temuan.page');
+    Route::get('/edit/operator/temuan/{id}', [OperatorController::class, 'showEdit'])->name('show.edit.operator.temuan.page');
+    Route::post('/update/operator/temuan/{id}', [OperatorController::class, 'updateTemuan'])->name('update.temuan.operator');
     Route::get('/update/status/{id}', [OperatorController::class, 'updateStatusTemuan'])->name('update.status.temuan');
+    Route::get('/delete/{id}', [OperatorController::class, 'deleteTemuan'])->name('delete.temuan');
     Route::get('/download/pdf/temuan', [OperatorController::class, 'downloadPdfFile'])->name('pdf.operator.temuan');
     
     // Admin
