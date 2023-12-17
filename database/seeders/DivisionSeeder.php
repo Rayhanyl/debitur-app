@@ -15,13 +15,13 @@ class DivisionSeeder extends Seeder
     {
         $division = [
             [
-                'name' => 'ksai',
+                'name' => 'skai',
             ],
             [
-                'name' => 'it',
+                'name' => 'project',
             ],
             [
-                'name' => 'akuntan',
+                'name' => 'product',
             ],
         ];
 

@@ -15,12 +15,12 @@
                             Import Excel
                           </a> --}}
                           @if (session('division') === 'KSAI')
-                            <a href="{{ route ('export.operator.temuan') }}" class="btn bg-gradient-primary mx-2 rounded-5">
+                            <a href="" class="btn bg-gradient-primary mx-2 rounded-5">
                               <i class="fa fa-download me-2" aria-hidden="true"></i> 
                               Download Excel
                             </a>
                           @else
-                            <a href="{{ route ('export.operator.temuan') }}" class="btn bg-gradient-primary mx-2 rounded-5">
+                            <a href="" class="btn bg-gradient-primary mx-2 rounded-5">
                               <i class="fa fa-download me-2" aria-hidden="true"></i> 
                               Download Excel
                             </a>
@@ -60,9 +60,9 @@
                                   <td>{{ $item->status }}</td>
                                   <td>
                                     <div class="d-grid gap-2 d-md-block">
-                                      <a href="{{ route('update.status.temuan.supervisor', ['id' => $item->id]) }}" class="btn btn-success btn-approved-temuan {{ $item->status == 2 || $item->status == 4 ? 'disabled' : '' }}" type="button">Approved</a>
-                                      <a href="{{ route('show.edit.operator.temuan.page', ['id' => $item->id]) }}" class="btn btn-warning {{ $item->status == 2 ? 'disabled' : '' }}">Edit</a>
-                                      <a href="{{ route('delete.temuan', ['id' => $item->id]) }}" class="btn btn-danger btn-delete-temuan {{ $item->status == 2 ? 'disabled' : '' }}">Delete</a>
+                                      <a href="" class="btn btn-success btn-approved-temuan {{ $item->status == 2 || $item->status == 4 ? 'disabled' : '' }}" type="button">Approved</a>
+                                      <a href="" class="btn btn-warning {{ $item->status == 2 ? 'disabled' : '' }}">Edit</a>
+                                      <a href="" class="btn btn-danger btn-delete-temuan {{ $item->status == 2 ? 'disabled' : '' }}">Delete</a>
                                     </div>
                                   </td>
                                 </tr>

@@ -23,48 +23,48 @@ class UserSeeder extends Seeder
                 'division_id' => 1
             ],
             [
-                'name' => 'Rizal',
-                'email' => 'rizal@gmail.com',
+                'name' => 'Supervisor SKAI',
+                'email' => 'supervisorskai@gmail.com',
                 'password' => Hash::make('qwerty'),
                 'role_id' => 2,
                 'division_id' => 1
 
             ],
             [
-                'name' => 'Angga',
-                'email' => 'angga@gmail.com',
+                'name' => 'Operator SKAI',
+                'email' => 'operatorskai@gmail.com',
                 'password' => Hash::make('qwerty'),
                 'role_id' => 3,
                 'division_id' => 1
 
             ],
             [
-                'name' => 'Atep',
-                'email' => 'atep@gmail.com',
+                'name' => 'Supervisor Project',
+                'email' => 'supervisorproject@gmail.com',
                 'password' => Hash::make('qwerty'),
                 'role_id' => 2,
                 'division_id' => 2
 
             ],
             [
-                'name' => 'Ahmad',
-                'email' => 'ahmad@gmail.com',
+                'name' => 'Operator Project',
+                'email' => 'operatorproject@gmail.com',
                 'password' => Hash::make('qwerty'),
                 'role_id' => 3,
                 'division_id' => 2
 
             ],
             [
-                'name' => 'Lanesra',
-                'email' => 'lanesra@gmail.com',
+                'name' => 'Supervisor Product',
+                'email' => 'supervisorproduct@gmail.com',
                 'password' => Hash::make('qwerty'),
                 'role_id' => 2,
                 'division_id' => 3
 
             ],
             [
-                'name' => 'Anggi',
-                'email' => 'anggi@gmail.com',
+                'name' => 'Operator Product',
+                'email' => 'operatorproduct@gmail.com',
                 'password' => Hash::make('qwerty'),
                 'role_id' => 3,
                 'division_id' => 3

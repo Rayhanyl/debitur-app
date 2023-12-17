@@ -40,9 +40,12 @@ class ExcelController extends Controller
 
     
     // Import By Division
-    public function importFileExcel(){
-        Excel::import(new TemuansImport,request()->file('file'));
-        Alert::toast('Berhasil upload file ','success');
+    public function importFileExcel(Request $request){
+        $dueDate = $request->due_date;
+        $import = new TemuansImport();
+        $import->setDueDate($dueDate);
+        Excel::import($import, $request->file('file'));
+        Alert::toast('Berhasil upload file ', 'success');
         return back();
     }
 }

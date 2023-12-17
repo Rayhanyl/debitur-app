@@ -1,28 +1,25 @@
 <?php
-  
+
 namespace App\Imports;
-  
+
 use App\Models\Temuan;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Hash;
 use Illuminate\Support\Facades\Auth;
 
 class TemuansImport implements ToModel, WithHeadingRow
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+    protected $dueDate;
+
+    public function setDueDate($dueDate)
+    {
+        $this->dueDate = $dueDate;
+    }
+
     public function model(array $row)
     {
         $user = Auth::user();
-        
-        // Extract the 'No' key from the $row array
         $no = $row['no'];
-    
-        // Create a new Temuan instance
         return new Temuan([
             'user_id'                => $user->id,
             'no'                     => $no,
@@ -35,7 +32,8 @@ class TemuansImport implements ToModel, WithHeadingRow
             'recomendation'          => $row['recomendation'],
             'corrective_action_plan' => $row['corrective_action_plan'],
             'status'                 => '1',
+            'due_date'               => $this->dueDate,
+            'overtime'               => $this->dueDate,
         ]);
     }
-    
 }

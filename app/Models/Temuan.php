@@ -14,6 +14,7 @@ class Temuan extends Model
      *
      * @var array<int, string>
      */
+
     protected $fillable = [
         'user_id',
         'no',
@@ -26,6 +27,8 @@ class Temuan extends Model
         'recomendation',
         'corrective_action_plan',
         'status',
+        'due_date',
+        'overtime',
     ];      
 
     public function user()

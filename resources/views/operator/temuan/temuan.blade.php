@@ -74,12 +74,12 @@
                                   <td>{{ $item->status }}</td>
                                   <td>
                                     <div class="d-grid gap-2 d-md-block">
-                                        @if (session('division') === 'KSAI')
+                                        @if (session('division') === 'SKAI')
                                             <a href="{{ route('update.status.temuan', ['id' => $item->id]) }}" class="btn btn-success btn-approved-temuan" type="button">Approved</a>
-                                            <a href="{{ route('show.edit.operator.temuan.page', ['id' => $item->id]) }}" class="btn btn-warning {{ $item->status == 3 ? 'disabled' : '' }}">Edit</a>
+                                            <a href="{{ route('operator.edit.temuan.page', ['id' => $item->id]) }}" class="btn btn-warning {{ $item->status == 3 ? 'disabled' : '' }}">Edit</a>
                                             <a href="{{ route('delete.temuan', ['id' => $item->id]) }}" class="btn btn-danger btn-delete-temuan {{ $item->status == 3 ? 'disabled' : '' }}">Delete</a>
                                         @else
-                                            <a href="{{ route('show.edit.operator.temuan.page', ['id' => $item->id]) }}" class="btn btn-warning {{ $item->status == 2 ? 'disabled' : '' }}">Edit</a>
+                                            <a href="{{ route('operator.edit.temuan.page', ['id' => $item->id]) }}" class="btn btn-warning {{ $item->status == 2 ? 'disabled' : '' }}">Edit</a>
                                             <a href="{{ route('delete.temuan', ['id' => $item->id]) }}" class="btn btn-danger btn-delete-temuan {{ $item->status == 2 ? 'disabled' : '' }}">Delete</a>
                                         @endif  
                                     </div>
@@ -87,7 +87,7 @@
                                 </tr>
                                 @endforeach
                               </tbody>
-                          </table>
+                            </table>
                           </div>
                         </div>
                     </div>

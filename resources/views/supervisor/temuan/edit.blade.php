@@ -10,7 +10,7 @@
                             <h4>Edit Otorisasi Temuan</h4>
                         </div>
                         <div class="col-12 my-5">
-                          <form action="{{ route ('update.temuan.operator', ['id' => $temuan->id]) }}" method="POST">
+                          <form action="{{ route ('update.temuan.supervisor', ['id' => $temuan->id]) }}" method="POST">
                            @csrf
                             <div class="row">
                               <div class="col-md-3">
@@ -55,12 +55,31 @@
                                   <textarea class="form-control" name="recomendation" id="recomendation" cols="20" rows="5">{{ $temuan->recomendation }}</textarea>
                                 </div>
                               </div>
-                              <div class="col-md-12">
+                              @if (session('division_id') == 1)
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="due_date" class="form-control-label">Due Date</label>
+                                    <input type="date" class="form-control" id="due_date" name="due_date" value="{{ $temuan->due_date }}" placeholder="Due Date">
+                                  </div>
+                                </div>
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="overtime" class="form-control-label">Overtime</label>
+                                    <input type="date" class="form-control" id="overtime" name="overtime" value="{{ $temuan->overtime }}" placeholder="Overtime">
+                                  </div>
+                                </div>
+                              @else
+                                <input type="hidden" name="due_date" id="due_date" value="{{ $temuan->due_date }}">
+                                <input type="hidden" name="overtime" id="overtime" value="{{ $temuan->overtime }}">
+                              @endif
+
+                              <div class="col">
                                 <div class="form-group">
                                   <label for="corrective_action_plan" class="form-control-label">Corrective Action Plan</label>
                                   <input type="text" class="form-control" id="corrective_action_plan" name="corrective_action_plan" value="{{ $temuan->corrective_action_plan }}" placeholder="Corrective Action Plan">
                                 </div>
                               </div>
+                              
                               <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary btn-lg w-100">Update Temuan</button>
                               </div>
@@ -96,15 +115,6 @@
 @push('scripts')
   <script>
       $(document).ready(function () {
-        $('#table-temuan-operator').DataTable({
-            responsive: true,
-            lengthMenu: [
-                [5, 10, 25, -1],
-                [5, 10, 25, 'All'],
-            ],
-            order: [[0, 'asc']],
-        });
-
         $('.btn-import-excel-file').on('click', function() {
             $('#importexcel-Modal').modal('show');
         });

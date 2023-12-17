@@ -33,22 +33,8 @@ class AuthenticationController extends Controller
                     break;
             }
 
-            switch ($users->division_id) {
-                case 1:
-                    $division = 'KSAI';
-                    break;
-                case 2:
-                    $division = 'IT';
-                    break;
-                case 3:
-                    $division = 'Acountant';
-                    break;
-                default:
-                    break;
-            }
-
+            
             $request->session()->put('role', $role);
-            $request->session()->put('division', $division);
             $request->session()->put('role_id', $users->role_id);
             $request->session()->put('division_id', $users->division_id);
             $request->session()->put('name', $users->name);
@@ -61,18 +47,17 @@ class AuthenticationController extends Controller
                 return redirect()->route('admin.dashboard');
                 
             } elseif ($users->role_id == '2'){
-                
+
                 Alert::toast('Selamat Anda Berhasil login '. $users->name,'success');
-                return redirect()->route('show.supervisor.temuan.page'); 
+                return redirect()->route('supervisor.dashboard.page'); 
 
             }elseif ($users->role_id == '3'){
 
                 Alert::toast('Selamat Anda Berhasil login '. $users->name,'success');
-                return redirect()->route('show.operator.temuan.page');
+                return redirect()->route('operator.dashboard.page');
 
             }
                                
-
         }else{
             Alert::toast('Password atau email anda salah','warning');
             return redirect()->route('show.login.page')->with('Oppes! You have entered invalid credentials');

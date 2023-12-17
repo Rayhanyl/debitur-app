@@ -45,96 +45,86 @@
         <ul class="navbar-nav">
             @if (session('role_id') == '2')
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <a class="nav-link {{ Request::url() == route('supervisor.dashboard.page') ? 'active' : '' }}" href="{{ route('supervisor.dashboard.page') }}">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <a class="nav-link {{ Request::url() == '#' ? 'active' : '' }}" href="#">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Periode</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{Request::url() == route('show.supervisor.temuan.page') ? 'active' : ''}}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <a class="nav-link {{ Request::url() == route('supervisor.temuan.page') ? 'active' : '' }}" href="{{ route('supervisor.temuan.page') }}">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-copy-04 text-success text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Otorisasi Temuan</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <a class="nav-link {{ Request::url() == route('supervisor.tanggapan.page') ? 'active' : '' }}" href="{{ route('supervisor.tanggapan.page') }}">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-check-bold text-info text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Otorisasi Tanggapan</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <a class="nav-link {{ Request::url() == route('supervisor.audit.page') ? 'active' : '' }}" href="{{ route('supervisor.audit.page') }}">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-archive-2 text-danger text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Audit Trail</span>
                     </a>
-                </li>
+                </li>            
             @elseif (session('role_id') == '3')
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <a class="nav-link {{ Request::url() == route('operator.dashboard.page') ? 'active' : '' }}" href="{{ route('operator.dashboard.page') }}">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <a class="nav-link {{ Request::url() == '#' ? 'active' : '' }}" href="#">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Periode</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{Request::url() == route('show.supervisor.temuan.page') ? 'active' : ''}}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <a class="nav-link {{ Request::url() == route('operator.temuan.page') ? 'active' : '' }}" href="{{ route('operator.temuan.page') }}">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-copy-04 text-success text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Otorisasi Temuan</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <a class="nav-link {{ Request::url() == route('operator.tanggapan.page') ? 'active' : '' }}" href="{{ route('operator.tanggapan.page') }}">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-check-bold text-info text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Otorisasi Tanggapan</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <a class="nav-link {{ Request::url() == route('operator.audit.page') ? 'active' : '' }}" href="{{ route('operator.audit.page') }}">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-archive-2 text-danger text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Audit Trail</span>
                     </a>
-                </li>
+                </li> 
             @else
                 <li class="nav-item">
                     <a class="nav-link active" href="#">

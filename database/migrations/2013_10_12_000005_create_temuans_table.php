@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('recomendation');
             $table->string('corrective_action_plan');
             $table->string('status');
+            $table->date('due_date');
+            $table->date('overtime');
             $table->timestamps();
         });
     }

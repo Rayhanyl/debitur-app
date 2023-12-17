@@ -23127,12 +23127,12 @@ hr.horizontal.gray-light {
   }
 }
 
-.sidenav[data-color="primary"] .navbar-nav>.nav-item>.nav-link.active {
-  background-image: linear-gradient(310deg, #5e72e4 0%, #5e72e4 100%);
+.sidenav .navbar-nav>.nav-item>.nav-link.active {
+  background-image: linear-gradient(310deg, #5e72e4 0%, #5e72e4 100%) !important;
 }
 
-.sidenav[data-color="primary"] .navbar-nav>.nav-item>.nav-link.active .icon i,
-.sidenav[data-color="primary"] .navbar-nav>.nav-item>.nav-link.active .nav-link-text {
+.sidenav .navbar-nav>.nav-item>.nav-link.active .icon i,
+.sidenav .navbar-nav>.nav-item>.nav-link.active .nav-link-text {
   color: #fff !important;
 }
 
